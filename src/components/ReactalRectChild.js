@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactalRectChildComponent from './ReactalRectChild'
 
-export default class ReactalRectComponent extends React.Component {
+export default class ReactalRectChildComponent extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -18,7 +17,8 @@ export default class ReactalRectComponent extends React.Component {
 
 	static propTypes = {
 		level: React.PropTypes.number,
-		status: React.PropTypes.number
+		status: React.PropTypes.number,
+		parentCall: React.PropTypes.func.isRequired
 	}
 
 	countUp() {
@@ -30,19 +30,28 @@ export default class ReactalRectComponent extends React.Component {
 			<ReactalRectChildComponent
 				key={k}
 				parentCall={this.parentCall}
+				isChild={true}
 				level={this.props.level - 1}/>
 		))
+		if (this.props.level > 0) {
+			return (
+				<div className="reactal_rect">
+					{children}
+				</div>)
+		}
+
 		return (
-			<div className="reactal_rect root">
-				{children}
-			</div>)
+			<div className="reactal_rect">
+				<button className="cell" onClick={this.countUp}>{this.state.counter}</button>
+			</div>
+		);
 	}
 
 	parentCall() {
+		this.props.parentCall();
 	}
 
 	componentWillUpdate() {
 		this.props.parentCall();
 	}
 }
-

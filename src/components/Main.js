@@ -12,7 +12,7 @@ class AppComponent extends React.Component {
 	render() {
 		return (
 			<div className="index">
-				<ReactalRectComponent level={5} parentCall={() => ''}/>
+				<ReactalRectComponent level={5}/>
 				<div className="notice">Please edit <code>src/components/Main.js</code>
 					to get started!
 				</div>
