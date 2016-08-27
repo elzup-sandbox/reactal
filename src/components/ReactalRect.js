@@ -1,15 +1,28 @@
 import React from 'react';
 
 export default class ReactalRectComponent extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			counter: 0
+		}
+		this.countUp = this.countUp.bind(this)
+	}
+
 	static defaultProps = {
 		level: 3,
-		isChild: false,
-		number: 0
+		isChild: false
 	}
+
 	static propTypes = {
 		level: React.PropTypes.number,
 		isChild: React.PropTypes.bool,
 		status: React.PropTypes.number
+	}
+
+	countUp() {
+		this.setState({counter: this.state.counter + 1});
 	}
 
 	render() {
@@ -28,9 +41,10 @@ export default class ReactalRectComponent extends React.Component {
 					<ReactalRectComponent isChild={true} level={this.props.level - 1}/>
 				</div>)
 		}
+
 		return (
 			<div className="reactal_rect" style={style}>
-				<p className="cell">{this.props.number}</p>
+				<a className="cell" onClick={this.countUp}>{this.state.counter}</a>
 			</div>
 		);
 	}

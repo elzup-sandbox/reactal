@@ -29,6 +29,7 @@ body {
 }
 
 .cell {
+	font-size: .5em;
 	width: 100%;
 	text-align: center;
 	margin: .1em;
