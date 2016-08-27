@@ -50,7 +50,7 @@ export default class ReactalRectComponent extends React.Component {
 
 		return (
 			<div className="reactal_rect" style={style}>
-				<a className="cell" onClick={this.countUp}>{this.state.counter}</a>
+				<button className="cell" onClick={this.countUp}>{this.state.counter}</button>
 			</div>
 		);
 	}
