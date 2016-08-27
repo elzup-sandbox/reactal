@@ -1,7 +1,6 @@
 /* Base Application Styles */
 body {
 	color: #fff;
-	background: #222;
 }
 
 .index img {
@@ -21,8 +20,26 @@ body {
 }
 
 .reactal_rect {
-	width: 50%;
-	height: 50%;
 	display: flex;
 	flex-wrap: wrap;
+	width: 46%;
+	padding: .9%;
+	margin: .9%;
+	background: rgba(0, 0, 0, 0.1);
+}
+
+.reactal_rect.root {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.cell {
+	background: #484848;
+	border: none;
+	color: white;
+	font-size: .5em;
+	width: 100%;
+	text-align: center;
+	margin: .1em;
 }
