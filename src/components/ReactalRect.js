@@ -8,6 +8,7 @@ export default class ReactalRectComponent extends React.Component {
 			counter: 0
 		}
 		this.countUp = this.countUp.bind(this)
+		this.parentCall = this.parentCall.bind(this);
 	}
 
 	static defaultProps = {
@@ -18,7 +19,8 @@ export default class ReactalRectComponent extends React.Component {
 	static propTypes = {
 		level: React.PropTypes.number,
 		isChild: React.PropTypes.bool,
-		status: React.PropTypes.number
+		status: React.PropTypes.number,
+		parentCall: React.PropTypes.func.isRequired
 	}
 
 	countUp() {
@@ -32,13 +34,17 @@ export default class ReactalRectComponent extends React.Component {
 			margin: 0
 		}
 		const style = this.props.isChild ? {} : rootStyle
+		const children = Array.from({length: 4}, (v, k) => (
+			<ReactalRectComponent
+				key={k}
+				parentCall={this.parentCall}
+				isChild={true}
+				level={this.props.level - 1}/>
+		))
 		if (this.props.level > 0) {
 			return (
 				<div className="reactal_rect" style={style}>
-					<ReactalRectComponent isChild={true} level={this.props.level - 1}/>
-					<ReactalRectComponent isChild={true} level={this.props.level - 1}/>
-					<ReactalRectComponent isChild={true} level={this.props.level - 1}/>
-					<ReactalRectComponent isChild={true} level={this.props.level - 1}/>
+					{children}
 				</div>)
 		}
 
@@ -47,5 +53,15 @@ export default class ReactalRectComponent extends React.Component {
 				<a className="cell" onClick={this.countUp}>{this.state.counter}</a>
 			</div>
 		);
+	}
+
+	parentCall() {
+		if (this.props.isChild) {
+			this.props.parentCall();
+		}
+	}
+
+	componentWillUpdate() {
+		this.props.parentCall();
 	}
 }
