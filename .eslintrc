@@ -2,6 +2,14 @@
   "extends": [
     "@elzup/eslint-config",
     "@elzup/eslint-config/typescript",
-    "@elzup/eslint-config/react"
-  ]
+    "@elzup/eslint-config/react",
+    "@elzup/eslint-config/jest"
+  ],
+    "parserOptions": {
+        "project": null
+    },
+    "rules": {
+
+"import/no-unassigned-import": 0
+    }
 }
