@@ -1,3 +1,5 @@
+![](https://github.com/elzup/reactal/workflows/Node%20CI/badge.svg)
+
 Reactal
 ===
 
